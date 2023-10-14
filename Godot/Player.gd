@@ -21,6 +21,7 @@ func _enter_tree():
 	pass
 
 func _ready():
+	randomize()
 	print("REDADY!", get_multiplayer_authority())
 	print("miname",str(name).to_int())
 	print("unique", get_index())
@@ -28,9 +29,13 @@ func _ready():
 	$Lavel.text = name
 #	if name != str(get_multiplayer_authority()): return
 
+
 	if not is_multiplayer_authority(): return
 	position.x = randi_range(0,1000)
 	position.y = randi_range(0,500)
+	$Icon.modulate = Color(randi_range(0,10),randi_range(0,10),randi_range(0,10))
+	
+
 
 #$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 #	if not is_multiplayer_authority(): return
@@ -50,7 +55,7 @@ func _physics_process(_delta):
 
 	if not is_multiplayer_authority(): return
 #	if self.name == str(get_multiplayer_authority()):
-	print("Going")
+	#print("Going")
 	var directionX = Input.get_axis("ui_left", "ui_right")
 	var directionY = Input.get_axis("ui_up", "ui_down")
 	if directionX:

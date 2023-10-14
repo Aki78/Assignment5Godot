@@ -11,6 +11,10 @@ properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
+properties/1/path = NodePath("Icon:modulate")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(559, 388)
