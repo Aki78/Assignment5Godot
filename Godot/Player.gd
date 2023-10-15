@@ -37,8 +37,8 @@ func _ready():
 
 
 	if not is_multiplayer_authority(): return
-	position.x = randi_range(0,1000)
-	position.y = randi_range(0,500)
+	position.x = randi_range(0,500)
+	position.y = randi_range(0,250)
 	$Icon.modulate = Color(randi_range(0,10),randi_range(0,10),randi_range(0,10))
 	
 
@@ -79,8 +79,8 @@ func receive_damage():
 	health -= 1
 	if health <= 0:
 		health = 3
-		position.x = randi_range(0,1000)
-		position.x = randi_range(0,1000)
+		position.x = randi_range(0,500)
+		position.y = randi_range(0,250)
 
 func shoot_animate():
 	if Input.is_action_just_pressed("left_click"):

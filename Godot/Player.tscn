@@ -42,7 +42,8 @@ properties/7/sync = true
 properties/7/watch = false
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(559, 388)
+position = Vector2(90, 311)
+scale = Vector2(0.330125, 0.330125)
 script = ExtResource("1_fr276")
 
 [node name="Icon" type="Sprite2D" parent="."]
