@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bto8rtnhudjm2"]
+[gd_scene load_steps=6 format=3 uid="uid://bto8rtnhudjm2"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_fr276"]
 [ext_resource type="Texture2D" uid="uid://c4dhpy3jybo4b" path="res://icon.svg" id="1_nqf30"]
+[ext_resource type="PackedScene" uid="uid://cf6bcfwcqlrge" path="res://Shoot.tscn" id="3_muad5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5g5ts"]
 radius = 67.4759
@@ -32,6 +33,9 @@ offset_left = -40.0
 offset_top = -112.0
 offset_right = 27.0625
 offset_bottom = -81.0
+
+[node name="Shoot" parent="." instance=ExtResource("3_muad5")]
+position = Vector2(-243, -274)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_42dl8")

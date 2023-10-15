@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 var tick = 0
+@onready var shoot = $Shoot
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -48,12 +49,17 @@ func _ready():
 #	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(_delta):
+
 #	if tick == 0:
 #		tick = 1
 #		set_multiplayer_authority(str(name).to_int())
 		
 
 	if not is_multiplayer_authority(): return
+	if Input.is_action_just_pressed("left_click"):
+		shoot.animate_me()
+	
+	look_at(get_global_mouse_position())
 #	if self.name == str(get_multiplayer_authority()):
 	#print("Going")
 	var directionX = Input.get_axis("ui_left", "ui_right")
