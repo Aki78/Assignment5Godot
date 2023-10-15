@@ -53,9 +53,10 @@ func _physics_process(_delta):
 #	if tick == 0:
 #		tick = 1
 #		set_multiplayer_authority(str(name).to_int())
-		
+#	if name == str(get_multiplayer_authority()): 
 
 	if not is_multiplayer_authority(): return
+
 	if Input.is_action_just_pressed("left_click"):
 		shoot.animate_me()
 	
@@ -75,3 +76,7 @@ func _physics_process(_delta):
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_shoot_shot():
+	print("shot")

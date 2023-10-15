@@ -16,6 +16,14 @@ properties/1/path = NodePath("Icon:modulate")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
+properties/2/path = NodePath("Shoot:visible")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(559, 388)
@@ -40,3 +48,5 @@ position = Vector2(-243, -274)
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_42dl8")
 visibility_update_mode = 1
+
+[connection signal="shot" from="Shoot" to="." method="_on_shoot_shot"]
