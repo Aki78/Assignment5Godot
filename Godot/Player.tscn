@@ -36,6 +36,10 @@ properties/6/path = NodePath("Shoot:process_priority")
 properties/6/spawn = true
 properties/6/sync = true
 properties/6/watch = true
+properties/7/path = NodePath("Life:text")
+properties/7/spawn = true
+properties/7/sync = true
+properties/7/watch = false
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(559, 388)
@@ -60,5 +64,20 @@ position = Vector2(-243, -274)
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_42dl8")
 visibility_update_mode = 1
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(1432, -5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Life" type="Label" parent="."]
+offset_left = -25.0
+offset_top = 69.0
+offset_right = 15.0
+offset_bottom = 95.0
+scale = Vector2(4.72, 3.45371)
+text = "3"
 
 [connection signal="shot" from="Shoot" to="." method="_on_shoot_shot"]

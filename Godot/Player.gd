@@ -4,7 +4,12 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 var tick = 0
+var vibrate = false
 @onready var shoot = $Shoot
+
+@onready var raycast = $RayCast2D
+
+var health = 3
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -60,10 +65,22 @@ func _physics_process(_delta):
 	shoot_animate()
 	move()
 	
+	if vibrate:
+		position.x += 5*sin(50*Time.get_unix_time_from_system())
+		print("vibrating!")
+	
 	look_at(get_global_mouse_position())
 #	if self.name == str(get_multiplayer_authority()):
 	#print("Going")
 
+
+@rpc("any_peer")
+func receive_damage():
+	health -= 1
+	if health <= 0:
+		health = 3
+		position.x = randi_range(0,1000)
+		position.x = randi_range(0,1000)
 
 func shoot_animate():
 	if Input.is_action_just_pressed("left_click"):
@@ -71,6 +88,13 @@ func shoot_animate():
 
 func _on_shoot_shot():
 	print("shot")
+	if raycast.is_colliding():
+		var hit_player = raycast.get_collider()
+		print("shooting: ", hit_player.get_multiplayer_authority())
+		var hit_id = hit_player.get_multiplayer_authority()
+		hit_player.receive_damage.rpc_id(hit_id)
+		hit_player.vibrate_me.rpc_id(hit_id)
+		print("shooooooot")
 
 func move():
 	var directionX = Input.get_axis("ui_left", "ui_right")
@@ -86,3 +110,12 @@ func move():
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+
+@rpc("any_peer")
+func vibrate_me():
+	$Life.text = str(health)
+	$Timer.start()
+	vibrate = true
+	await $Timer.timeout
+	vibrate = false
+	
