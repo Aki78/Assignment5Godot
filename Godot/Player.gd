@@ -57,12 +57,22 @@ func _physics_process(_delta):
 
 	if not is_multiplayer_authority(): return
 
-	if Input.is_action_just_pressed("left_click"):
-		shoot.animate_me()
+	shoot_animate()
+	move()
 	
 	look_at(get_global_mouse_position())
 #	if self.name == str(get_multiplayer_authority()):
 	#print("Going")
+
+
+func shoot_animate():
+	if Input.is_action_just_pressed("left_click"):
+		shoot.animate_me()
+
+func _on_shoot_shot():
+	print("shot")
+
+func move():
 	var directionX = Input.get_axis("ui_left", "ui_right")
 	var directionY = Input.get_axis("ui_up", "ui_down")
 	if directionX:
@@ -76,7 +86,3 @@ func _physics_process(_delta):
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
-
-
-func _on_shoot_shot():
-	print("shot")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cf6bcfwcqlrge"]
+[gd_scene load_steps=17 format=3 uid="uid://cf6bcfwcqlrge"]
 
 [ext_resource type="Texture2D" uid="uid://c5ouaybf17rob" path="res://Sprites/20794860-0-0.png" id="1_6rh4i"]
 [ext_resource type="Script" path="res://Shoot.gd" id="1_es0wq"]
@@ -69,6 +69,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iu6ya"]
+properties/0/path = NodePath("AnimatedSprite2D:animation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = true
+properties/1/path = NodePath("AnimatedSprite2D:frame")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = true
+properties/2/path = NodePath("AnimatedSprite2D:visible")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = true
+
 [node name="Shoot" type="Node2D"]
 script = ExtResource("1_es0wq")
 
@@ -83,3 +97,6 @@ wait_time = 0.1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_1brjk")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_iu6ya")
